@@ -1,18 +1,33 @@
 import getAllSessions from './apis/getAllSessions'
 import getItems from './apis/getItems'
-import filterItemsByCriteria from './utils/filterItemsByCriteria'
+import getSingleItem from './apis/getSingleItem'
 import parseSession from './utils/parseSession'
 
-const main = async () => {
+/**
+ *
+ *
+ * @returns
+ */
+export const getCurrentFlashSaleItems = async () => {
   const allSessions = await getAllSessions()
   const currentSession = allSessions[0]
   const promotionId = currentSession.promotionid
 
   const paginations = await parseSession(currentSession)
-  console.log('🚀 Total Page:', paginations.length)
-  const items = await getItems(promotionId, paginations[0])
-  const filterdItems = filterItemsByCriteria(items)
-  console.log('🚀 ~ file: index.ts:15 ~ main ~ filterdItems:', filterdItems)
+  const itemPromises = paginations.map((pagination) =>
+    getItems(promotionId, pagination),
+  )
+  const itemsDetailByPaginations = await Promise.all(itemPromises)
+  return itemsDetailByPaginations.flat()
 }
 
-main()
+/**
+ *
+ *
+ * @param {number} shopId
+ * @param {number} itemId
+ */
+export const getItemDetail = async (shopId: number, itemId: number) => {
+  const itemDetail = await getSingleItem(shopId, itemId)
+  return itemDetail
+}

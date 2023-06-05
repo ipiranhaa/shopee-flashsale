@@ -2,7 +2,8 @@
   "extends": "@tsconfig/node-lts/tsconfig.json",
   "compilerOptions": {
     "sourceMap": true,
-    "noEmit": true,
+    "noEmit": false,
+    "declaration": true,
     "rootDir": "./src",
     "outDir": "./dist",
     "module": "esnext",
@@ -11,5 +12,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
 }

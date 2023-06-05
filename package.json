@@ -2,10 +2,12 @@
   "name": "shopee-flashsale",
   "version": "1.0.0",
   "description": "API for Shopee Flash Sale listing",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "dev": "tsx src/index.ts",
-    "watch": "tsx watch src/index.ts"
+    "watch": "tsx watch src/index.ts",
+    "build": "tsc"
   },
   "keywords": [
     "shopee",
