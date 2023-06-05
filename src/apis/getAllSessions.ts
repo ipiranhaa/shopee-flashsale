@@ -1,5 +1,5 @@
-import { GET_ALL_SESSIONS_URL } from '@/config'
-import type IAllSessionsResponse from '@/interfaces/allSessionsResponse'
+import { GET_ALL_SESSIONS_URL } from '../config'
+import type IAllSessionsResponse from '../interfaces/allSessionsResponse'
 import axios from 'axios'
 
 const getAllSessions = async () => {

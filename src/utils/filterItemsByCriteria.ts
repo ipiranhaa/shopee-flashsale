@@ -1,4 +1,4 @@
-import { IItems } from '@/interfaces/itemsResponse'
+import { IItems } from '../interfaces/itemsResponse'
 
 const filterItemsByCriteria = (items: IItems[]) => {
   // NOTE: Rating >= 4 and discount >= 10%

@@ -1,4 +1,4 @@
-import { PAGINATION_ITEM_AMOUNT } from '@/config'
+import { PAGINATION_ITEM_AMOUNT } from '../config'
 
 const splitItemIdsToPaginations = (allItemIds: number[]) => {
   const page = Math.ceil(allItemIds.length / PAGINATION_ITEM_AMOUNT)

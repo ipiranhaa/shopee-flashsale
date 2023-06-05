@@ -1,13 +1,16 @@
 {
   "name": "shopee-flashsale",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "API for Shopee Flash Sale listing",
+  "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "dev": "tsx src/index.ts",
     "watch": "tsx watch src/index.ts",
-    "build": "tsc"
+    "build": "rimraf dist && tsc",
+    "lint": "prettier --check \"**/*.{md,yml,json}\" && eslint .",
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [
     "shopee",
@@ -27,6 +30,7 @@
     "eslint-plugin-prettier": "4.2.1",
     "eslint-plugin-unicorn": "47.0.0",
     "prettier": "2.8.8",
+    "rimraf": "5.0.1",
     "tsx": "3.12.7",
     "typescript": "5.1.3"
   },

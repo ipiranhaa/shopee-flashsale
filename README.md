@@ -5,7 +5,7 @@
 ## Installation
 
 ```cmd
-pnpm add @ipiranhaa/shopee-flashsale
+pnpm add shopee-flashsale
 ```
 
 ## API
@@ -13,7 +13,7 @@ pnpm add @ipiranhaa/shopee-flashsale
 Get Current Flash Sale Items
 
 ```typescript
-import { getCurrentFlashSaleItems } from '@ipiranhaa/shopee-flashsale'
+import { getCurrentFlashSaleItems } from 'shopee-flashsale'
 
 const items = await getCurrentFlashSaleItems()
 ```
@@ -21,7 +21,7 @@ const items = await getCurrentFlashSaleItems()
 Get Item Detail
 
 ```typescript
-import { getItemDetail } from '@ipiranhaa/shopee-flashsale'
+import { getItemDetail } from 'shopee-flashsale'
 
 const item = await getItemDetail(147258369, 963852741)
 ```

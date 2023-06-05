@@ -1,5 +1,5 @@
-import { GET_ITEMS_URL } from '@/config'
-import type IItemsResponse from '@/interfaces/itemsResponse'
+import { GET_ITEMS_URL } from '../config'
+import type IItemsResponse from '../interfaces/itemsResponse'
 import axios from 'axios'
 
 const getItems = async (promotionId: number, itemIds: number[]) => {
