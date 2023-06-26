@@ -1,9 +1,9 @@
 import { GET_ALL_ITEM_IDS_URL } from '../config'
 import type IAllItemIdsResponse from '../interfaces/allItemIdsResponse'
-import axios from 'axios'
+import client from '../services/client'
 
 const getAllItemIds = async (promotionId: number) => {
-  const { data } = await axios.get<IAllItemIdsResponse>(GET_ALL_ITEM_IDS_URL, {
+  const { data } = await client.get<IAllItemIdsResponse>(GET_ALL_ITEM_IDS_URL, {
     params: { promotionid: promotionId, sort_soldout: true },
   })
   const itemBriefList = data.data.item_brief_list
