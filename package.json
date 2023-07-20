@@ -11,7 +11,7 @@
     "build": "rimraf dist && tsc",
     "lint": "prettier --check \"**/*.{md,yml,json}\" && eslint .",
     "typecheck": "tsc --noEmit",
-    "publish": "pnpm build && npm publish"
+    "upload": "pnpm build && npm publish"
   },
   "keywords": [
     "shopee",
