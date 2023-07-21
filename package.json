@@ -11,6 +11,7 @@
     "build": "rimraf dist && tsc",
     "lint": "prettier --check \"**/*.{md,yml,json}\" && eslint .",
     "typecheck": "tsc --noEmit",
+    "ok": "pnpm typecheck && pnpm lint",
     "upload": "pnpm build && npm publish"
   },
   "keywords": [

@@ -6,7 +6,7 @@ export interface ISingleItemByBrowserResponse {
   data: IData
 }
 
-export interface ISingleItemByBrowser {
+export interface IItemDetail {
   item_id: number
   shop_id: number
   item_status: string
@@ -91,11 +91,11 @@ export interface ISingleItemByBrowser {
   show_recycling_info: boolean
 }
 
-interface IItemRating {
+export interface IItemRating {
   rating_star: number
 }
 
-interface IAttributes {
+export interface IAttributes {
   name: string
   value: string
   id: number
@@ -105,21 +105,21 @@ interface IAttributes {
   url?: null
 }
 
-interface ICategories {
+export interface ICategories {
   catid: number
   display_name: string
   no_sub: boolean
   is_default_subcat: boolean
 }
 
-interface IFeCategories {
+export interface IFeCategories {
   catid: number
   display_name: string
   no_sub: boolean
   is_default_subcat: boolean
 }
 
-interface IModels {
+export interface IModels {
   item_id: number
   status: number
   current_promotion_reserved_stock: number
@@ -138,13 +138,13 @@ interface IModels {
   sold: number
 }
 
-interface IPriceStocks {
+export interface IPriceStocks {
   allocated_stock: number
   stock_breakdown_by_location: IStockBreakdownByLocation[]
   promotion_type: number
 }
 
-interface IStockBreakdownByLocation {
+export interface IStockBreakdownByLocation {
   location_id: string
   available_stock: number
   fulfilment_type: number
@@ -152,13 +152,13 @@ interface IStockBreakdownByLocation {
   allocated_stock?: null
 }
 
-interface IExtinfo {
+export interface IExtinfo {
   tier_index: number[]
   is_pre_order: boolean
   estimated_days: number
 }
 
-interface ITierVariations {
+export interface ITierVariations {
   name: string
   options: string[]
   images?: null
@@ -167,7 +167,7 @@ interface ITierVariations {
   summed_stocks?: null
 }
 
-interface ISplInfo {
+export interface ISplInfo {
   installment_info?: null
   user_credit_info?: null
   channel_id?: null
@@ -175,8 +175,8 @@ interface ISplInfo {
   show_spl_lite: boolean
 }
 
-interface IData {
-  item: ISingleItemByBrowser
+export interface IData {
+  item: IItemDetail
   account: IAccount
   product_images: IProductImages
   product_price: IProductPrice
@@ -198,7 +198,7 @@ interface IData {
   shop_detailed: IShopDetailed
 }
 
-interface IAccount {
+export interface IAccount {
   user_id?: null
   is_new_user?: null
   default_address: IDefaultAddress
@@ -209,7 +209,7 @@ interface IAccount {
   status: number
 }
 
-interface IDefaultAddress {
+export interface IDefaultAddress {
   state: string
   city: string
   district: string
@@ -219,7 +219,7 @@ interface IDefaultAddress {
   region?: null
 }
 
-interface IProductImages {
+export interface IProductImages {
   video?: null
   images: string[]
   first_tier_variations: IFirstTierVariations[]
@@ -235,20 +235,20 @@ interface IProductImages {
   skincam?: null
 }
 
-interface IFirstTierVariations {
+export interface IFirstTierVariations {
   name: string
   image: string
   summed_stock: number
 }
 
-interface IOverlay {
+export interface IOverlay {
   type: number
   image: string
   preview_end_time?: null
   is_pre_order?: null
 }
 
-interface IProductPrice {
+export interface IProductPrice {
   discount: number
   spl_installment_info?: null
   pack_size: string
@@ -260,21 +260,21 @@ interface IProductPrice {
   labels?: null
 }
 
-interface IPrice {
+export interface IPrice {
   single_value: number
   range_min: number
   range_max: number
   price_mask?: null
 }
 
-interface IPriceBeforeDiscount {
+export interface IPriceBeforeDiscount {
   single_value: number
   range_min: number
   range_max: number
   price_mask?: null
 }
 
-interface IProductMeta {
+export interface IProductMeta {
   show_lowest_price_guarantee: boolean
   show_original_guarantee: boolean
   show_best_price_guarantee: boolean
@@ -282,7 +282,7 @@ interface IProductMeta {
   show_shopee_verified_label: boolean
 }
 
-interface IProductReview {
+export interface IProductReview {
   rating_star: number
   rating_count: number[]
   total_rating_count: number
@@ -295,7 +295,7 @@ interface IProductReview {
   review_rcmd_exp_group?: null
 }
 
-interface IPromotionInfo {
+export interface IPromotionInfo {
   spl?: null
   spl_lite?: null
   installment?: null
@@ -304,18 +304,18 @@ interface IPromotionInfo {
   item_installment_eligibility?: null
 }
 
-interface IAgeGate {
+export interface IAgeGate {
   kyc?: null
 }
 
-interface IShippingMeta {
+export interface IShippingMeta {
   show_fufilled_by_shopee: boolean
   show_cod: boolean
   show_mart: boolean
   show_next_day_delivery: boolean
 }
 
-interface IProductShipping {
+export interface IProductShipping {
   free_shipping?: null
   shipping_fee_info: IShippingFeeInfo
   show_shipping_to: boolean
@@ -326,14 +326,14 @@ interface IProductShipping {
   show_grouped_channel_first?: null
 }
 
-interface IShippingFeeInfo {
+export interface IShippingFeeInfo {
   ship_from_location: string
   price: IPrice
   shipping_icon_type: number
   warning?: null
 }
 
-interface IUngroupedChannelInfos {
+export interface IUngroupedChannelInfos {
   channel_id: number
   name: string
   price: IPrice
@@ -343,7 +343,7 @@ interface IUngroupedChannelInfos {
   warning?: null
 }
 
-interface IChannelDeliveryInfo {
+export interface IChannelDeliveryInfo {
   has_edt: boolean
   display_mode: string
   estimated_delivery_date_from: number
@@ -353,7 +353,7 @@ interface IChannelDeliveryInfo {
   delay_message?: null
 }
 
-interface IShopVouchers {
+export interface IShopVouchers {
   promotionid: number
   voucher_code: string
   signature: string
@@ -430,13 +430,13 @@ interface IShopVouchers {
   fsv_voucher_card_ui_info?: null
 }
 
-interface ICoinInfo {
+export interface ICoinInfo {
   spend_cash_unit: number
   coin_earn_items: []
   coin_earn_label?: null
 }
 
-interface IAttrs {
+export interface IAttrs {
   name: string
   value: string
   id?: null
@@ -446,12 +446,12 @@ interface IAttrs {
   url?: null
 }
 
-interface IProductAttributes {
+export interface IProductAttributes {
   attrs: IAttrs[]
   categories: ICategories[]
 }
 
-interface IShopDetailed {
+export interface IShopDetailed {
   shopid: number
   userid: number
   last_active_time: number

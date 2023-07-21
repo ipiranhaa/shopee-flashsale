@@ -1,6 +1,6 @@
 import {
-  ISingleItemByBrowser,
-  ISingleItemByBrowserResponse,
+  type IData,
+  type ISingleItemByBrowserResponse,
 } from '../interfaces/singleItemByBrowserResponse'
 import puppeteer from 'puppeteer-extra'
 import AdblockerPlugin from 'puppeteer-extra-plugin-adblocker'
@@ -8,7 +8,7 @@ import StealthPlugin from 'puppeteer-extra-plugin-stealth'
 
 puppeteer.use(AdblockerPlugin()).use(StealthPlugin())
 
-const getItemDetailByBrowser = (url: string): Promise<ISingleItemByBrowser> => {
+const getItemDetailByBrowser = (url: string): Promise<IData> => {
   return new Promise((resolve) => {
     puppeteer
       .launch({
@@ -24,7 +24,7 @@ const getItemDetailByBrowser = (url: string): Promise<ISingleItemByBrowser> => {
           const url = response.url()
           if (url.includes('pdp/get_pc')) {
             const json: ISingleItemByBrowserResponse = await response.json()
-            resolve(json.data.item)
+            resolve(json.data)
             await browser.close()
           }
         })

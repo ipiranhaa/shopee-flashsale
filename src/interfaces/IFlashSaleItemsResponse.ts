@@ -1,11 +1,11 @@
-interface IItemsResponse {
+interface IFlashSaleItemsResponse {
   bff_meta?: null
   error: number
   error_msg?: null
   data: IData
 }
 
-export interface IItems {
+export interface IFlashSaleItems {
   itemid: number
   shopid: number
   modelids?: null
@@ -61,7 +61,7 @@ interface IItemRating {
 }
 
 interface IData {
-  items: IItems[]
+  items: IFlashSaleItems[]
 }
 
-export default IItemsResponse
+export default IFlashSaleItemsResponse
