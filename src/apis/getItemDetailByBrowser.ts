@@ -9,40 +9,34 @@ import StealthPlugin from 'puppeteer-extra-plugin-stealth'
 
 puppeteer.use(AdblockerPlugin()).use(StealthPlugin())
 
-export interface IOptions {
-  isHeadless?: boolean
-  executablePath?: string
-}
-
 const getItemDetailByBrowser = (
   url: string,
-  options: IOptions = {},
+  options: PuppeteerLaunchOptions = {},
 ): Promise<IData> => {
-  const launchOption: PuppeteerLaunchOptions = {
+  const defaultOptions: PuppeteerLaunchOptions = {
     defaultViewport: null,
     headless: true,
-  }
-  if (options.isHeadless !== undefined) {
-    launchOption.headless = options.isHeadless
-  }
-  if (options.executablePath) {
-    launchOption.executablePath = options.executablePath
+    timeout: 30_000,
+    ...options,
   }
 
   return new Promise((resolve, reject) => {
-    puppeteer.launch(launchOption).then(async (browser) => {
+    puppeteer.launch(defaultOptions).then(async (browser) => {
       const page = await browser.newPage()
       await page.setRequestInterception(true)
       await page.goto(url)
+
+      const rejectTimeout = setTimeout(() => {
+        reject('Item detail not found.')
+      }, defaultOptions.timeout)
 
       page.on('response', async (response) => {
         const url = response.url()
         if (url.includes('pdp/get_pc')) {
           const json: ISingleItemByBrowserResponse = await response.json()
+          clearTimeout(rejectTimeout)
           resolve(json.data)
           await browser.close()
-        } else {
-          reject('Item detail not found.')
         }
       })
     })
