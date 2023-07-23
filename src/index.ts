@@ -1,5 +1,5 @@
 import getAllSessions from './apis/getAllSessions'
-import getItemDetailByBrowser from './apis/getItemDetailByBrowser'
+import getItemDetailByBrowser, { IOptions } from './apis/getItemDetailByBrowser'
 import getItems from './apis/getItems'
 import { type IFlashSaleItems } from './interfaces/IFlashSaleItemsResponse'
 import { type IData } from './interfaces/singleItemByBrowserResponse'
@@ -11,7 +11,9 @@ export * from './interfaces/singleItemByBrowserResponse'
 /**
  *
  *
- * @returns
+ * @returns {Promise<
+ *   IFlashSaleItems[]
+ * >}
  */
 export const getCurrentFlashSaleItems = async (): Promise<
   IFlashSaleItems[]
@@ -27,13 +29,18 @@ export const getCurrentFlashSaleItems = async (): Promise<
   const itemsDetailByPaginations = await Promise.all(itemPromises)
   return itemsDetailByPaginations.flat()
 }
+
 /**
  *
  *
  * @param {string} url
+ * @param {IOptions} [options={}]
  * @returns {Promise<IData>}
  */
-export const getItemDetail = async (url: string): Promise<IData> => {
-  const itemDetail = await getItemDetailByBrowser(url)
+export const getItemDetail = async (
+  url: string,
+  options: IOptions = {},
+): Promise<IData> => {
+  const itemDetail = await getItemDetailByBrowser(url, options)
   return itemDetail
 }

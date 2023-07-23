@@ -9,7 +9,7 @@ import StealthPlugin from 'puppeteer-extra-plugin-stealth'
 
 puppeteer.use(AdblockerPlugin()).use(StealthPlugin())
 
-interface IOptions {
+export interface IOptions {
   isHeadless?: boolean
   executablePath?: string
 }
