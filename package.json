@@ -1,6 +1,6 @@
 {
   "name": "shopee-flashsale",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "API for Shopee Flash Sale listing",
   "type": "module",
   "main": "dist/index.js",
