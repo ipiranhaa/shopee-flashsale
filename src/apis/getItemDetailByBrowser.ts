@@ -23,6 +23,7 @@ const getItemDetailByBrowser = (
   return new Promise((resolve, reject) => {
     puppeteer.launch(defaultOptions).then(async (browser) => {
       const page = await browser.newPage()
+      page.setDefaultNavigationTimeout(0)
       await page.setRequestInterception(true)
       await page.goto(url)
 
