@@ -2,46 +2,32 @@ import {
   type IData,
   type ISingleItemByBrowserResponse,
 } from '../interfaces/singleItemByBrowserResponse'
+import { getBrowser, initOptions } from '../services/puppeteerClient'
 import { PuppeteerLaunchOptions } from 'puppeteer'
-import puppeteer from 'puppeteer-extra'
-import AdblockerPlugin from 'puppeteer-extra-plugin-adblocker'
-import StealthPlugin from 'puppeteer-extra-plugin-stealth'
 
-puppeteer.use(AdblockerPlugin()).use(StealthPlugin())
-
-const getItemDetailByBrowser = (
+const getItemDetailByBrowser = async (
   url: string,
   options: PuppeteerLaunchOptions = {},
 ): Promise<IData> => {
-  const defaultOptions: PuppeteerLaunchOptions = {
-    defaultViewport: null,
-    headless: true,
-    timeout: 30_000,
-    ...options,
+  const hasOptions = Object.keys(options).length > 0
+  if (hasOptions) {
+    initOptions(options)
   }
 
-  return new Promise((resolve, reject) => {
-    puppeteer.launch(defaultOptions).then(async (browser) => {
-      const page = await browser.newPage()
-      page.setDefaultNavigationTimeout(0)
-      await page.setRequestInterception(true)
-      await page.goto(url)
+  const browser = getBrowser()
 
-      const rejectTimeout = setTimeout(() => {
-        reject('Item detail not found.')
-      }, defaultOptions.timeout)
+  const page = await browser.newPage()
+  page.setDefaultNavigationTimeout(0)
+  await page.setRequestInterception(true)
+  await page.goto(url)
 
-      page.on('response', async (response) => {
-        const url = response.url()
-        if (url.includes('pdp/get_pc')) {
-          const json: ISingleItemByBrowserResponse = await response.json()
-          clearTimeout(rejectTimeout)
-          resolve(json.data)
-          await browser.close()
-        }
-      })
-    })
-  })
+  const response = await page.waitForResponse(
+    (response) =>
+      response.url().includes('pdp/get_pc') && response.status() === 200,
+  )
+  const json: ISingleItemByBrowserResponse = await response.json()
+  await browser.close()
+  return json.data
 }
 
 export default getItemDetailByBrowser
