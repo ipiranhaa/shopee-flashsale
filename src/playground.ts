@@ -9,7 +9,14 @@ const gt = async () => {
     const result = await getItemDetailByBrowser(
       'https://shopee.co.th/product/397858892/8841436743',
     )
-    console.log('🚀 ~ file: playground.ts:10 ~ gt ~ result:', result)
+    console.log('🚀 ~ file: playground.ts:10 ~ gt ~ result:', result.item.title)
+    const result2 = await getItemDetailByBrowser(
+      'https://shopee.co.th/product/19507788/16600076599',
+    )
+    console.log(
+      '🚀 ~ file: playground.ts:10 ~ gt ~ result2:',
+      result2.item.title,
+    )
   } catch (error) {
     console.log('🚀 ~ file: playground.ts:15 ~ gt ~ error:', error)
   }

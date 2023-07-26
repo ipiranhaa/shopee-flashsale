@@ -2,7 +2,7 @@ import {
   type IData,
   type ISingleItemByBrowserResponse,
 } from '../interfaces/singleItemByBrowserResponse'
-import { getBrowser, initOptions } from '../services/puppeteerClient'
+import { getBrowser, setOptions } from '../services/puppeteerClient'
 import { PuppeteerLaunchOptions } from 'puppeteer'
 
 const getItemDetailByBrowser = async (
@@ -11,11 +11,10 @@ const getItemDetailByBrowser = async (
 ): Promise<IData> => {
   const hasOptions = Object.keys(options).length > 0
   if (hasOptions) {
-    await initOptions(options)
+    setOptions(options)
   }
 
-  const browser = getBrowser()
-
+  const browser = await getBrowser()
   const page = await browser.newPage()
   page.setDefaultNavigationTimeout(0)
   await page.setRequestInterception(true)
