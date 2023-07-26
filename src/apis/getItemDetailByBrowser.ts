@@ -11,7 +11,7 @@ const getItemDetailByBrowser = async (
 ): Promise<IData> => {
   const hasOptions = Object.keys(options).length > 0
   if (hasOptions) {
-    initOptions(options)
+    await initOptions(options)
   }
 
   const browser = getBrowser()

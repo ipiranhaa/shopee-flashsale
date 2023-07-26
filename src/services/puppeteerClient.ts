@@ -17,7 +17,7 @@ let browser = await puppeteer.launch(options)
 
 export const initOptions = async (extraOptions: PuppeteerLaunchOptions) => {
   options = { ...defaultOptions, ...extraOptions }
-  browser.close()
+  await browser.close()
   browser = await puppeteer.launch(options)
 }
 
